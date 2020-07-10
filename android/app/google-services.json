@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "684000270277",
+    "firebase_url": "https://kavadi-seva-2020-a7e22.firebaseio.com",
+    "project_id": "kavadi-seva-2020-a7e22",
+    "storage_bucket": "kavadi-seva-2020-a7e22.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:684000270277:android:4bdd2dcbd2bac5b7b49dac",
+        "android_client_info": {
+          "package_name": "com.example.kavadi_ustav_2020"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "684000270277-9fbapk932r4kvv5men8bvtenvecnqjs6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kavadi_ustav_2020",
+            "certificate_hash": "30e13b3df6e1abedec5dd4cce55500a7b972b1df"
+          }
+        },
+        {
+          "client_id": "684000270277-e6hvbd82jcv14c2ff2h6hfj6lbckkoq2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDxZamvAdtnS2YXRWemlJhv3DwgjGF1EY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "684000270277-e6hvbd82jcv14c2ff2h6hfj6lbckkoq2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
