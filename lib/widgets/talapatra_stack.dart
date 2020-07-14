@@ -13,19 +13,19 @@ class TalapatraStack extends StatelessWidget {
         children: <Widget>[
           Positioned(
             top: 0,
-            child: TalapatraCard('123', 28.0),
+            // child: TalapatraCard('123', 28.0),
           ),
           Positioned(
             top: -10,
-            child: TalapatraCard('123', 28.0),
+            // child: TalapatraCard('123', 28.0),
           ),
           Positioned(
             top: -20,
-            child: TalapatraCard('123', 28.0),
+            // child: TalapatraCard('123', 28.0),
           ),
           Positioned(
             top: -30,
-            child: TalapatraCard('123', 28.0),
+            // child: TalapatraCard('123', 28.0),
           )
         ],
       ),

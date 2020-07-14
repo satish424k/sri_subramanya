@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:kavadi_ustav_2020/utils/data.dart';
 import 'package:kavadi_ustav_2020/utils/fonts.dart';
 import 'package:kavadi_ustav_2020/utils/routes.dart';
-import 'package:kavadi_ustav_2020/widgets/content_selection_card.dart';
 import 'package:kavadi_ustav_2020/widgets/live_photos_grid_item.dart';
 import 'package:kavadi_ustav_2020/widgets/talapatra_card.dart';
 import 'package:marquee/marquee.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,9 +72,6 @@ class WelcomeScreen extends StatelessWidget {
     } else {
       return Stack(
         children: <Widget>[
-          ContentSelectionCard()
-          
-
           TalapatraCard(Data.talapatraCardTitles[index], 28.0, () {
             switch (index) {
               case 0:

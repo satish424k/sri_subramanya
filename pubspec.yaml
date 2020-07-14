@@ -56,8 +56,13 @@ flutter:
   assets:
     - assets/images/vel.jpg
     - assets/images/vel_blur.jpg
-    - assets/images/hibiscus_2.jpg
     - assets/images/1.jpg
+    - assets/images/vada_palani_gopuram.jpg
+    - assets/images/kukke_subramanya_gopuram.png
+    - assets/images/swamymalai_gopuram.png
+    - assets/images/tiruchandur_gopuram.png
+    - assets/images/tirupparakundram_gopuram.png
+    - assets/images/tiruttani_gopuram.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
