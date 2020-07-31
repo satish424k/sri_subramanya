@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:kavadi_ustav_2020/utils/routes.dart';
-import 'package:kavadi_ustav_2020/widgets/detail_screen.dart';
-import 'package:kavadi_ustav_2020/widgets/home_screen.dart';
-import 'package:kavadi_ustav_2020/widgets/story_selection_screen.dart';
+import 'package:kavadi_ustav_2020/services/connectivity_service.dart';
+import 'package:kavadi_ustav_2020/utils/connectivity.dart';
+import 'package:kavadi_ustav_2020/widgets/gallery/gallery_screen.dart';
+import 'package:kavadi_ustav_2020/widgets/home/home_screen.dart';
+
+import 'utils/routes.dart';
+import 'widgets/stories/story_selection_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,7 +14,12 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return
+        // StreamProvider<ConnectivityStatus>(
+        //   builder: (context) => ConnectivityService().connectionStatusController,
+        //   child:
+
+        MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         primaryColor: Colors.black,
@@ -19,8 +27,10 @@ class MyApp extends StatelessWidget {
       ),
       home: HomeScreen(),
       routes: {
-        Routes.storySelectionScreen : (context) => StorySelectionScreen(),
+        Routes.storySelectionScreen: (context) => StorySelectionScreen(),
+        Routes.galleryScreen: (context) => GalleryScreen()
       },
     );
+    // );
   }
 }

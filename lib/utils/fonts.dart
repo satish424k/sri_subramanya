@@ -19,13 +19,13 @@ class FontStyle {
     );
   }
 
-  TextStyle getTeluguRegularFontStyle(double size, Color color) {
+  TextStyle getTeluguRegularFontStyle(double size, Color color, [double height]) {
     return TextStyle(
       fontSize: size,
       fontFamily: 'SreeKrushnadevaraya',
       fontWeight: FontWeight.w400,
       color: color,
-      height: 1.0
+      height: height ?? 1.1
     );
   }
 }
