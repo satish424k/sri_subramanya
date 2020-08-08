@@ -52,7 +52,8 @@ class _UploadMusicState extends State<UploadMusic> {
 
     if (songName.text != "" &&
         songName.text != null &&
-        songDownUrl.toString() is String) {
+        songDownUrl.toString() is String &&
+        songDownUrl != null) {
       setState(() {
         updateInProgress = true;
       });
@@ -78,9 +79,11 @@ class _UploadMusicState extends State<UploadMusic> {
 
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
         body: updateInProgress
-            ? CircularProgressIndicator()
+            ? Center(child: CircularProgressIndicator())
             : Container(
                 height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -96,41 +99,43 @@ class _UploadMusicState extends State<UploadMusic> {
                     Padding(
                       padding:
                           const EdgeInsets.only(left: 8.0, right: 8.0, top: 70),
-                      child: Container(
-                        height: 200,
-                        child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: <Widget>[
-                                RaisedButton(
-                                  onPressed: selectSong,
-                                  child: Text('Select Song'),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                TextField(
-                                  controller: songName,
-                                  decoration: InputDecoration(
-                                    hintText: 'Enter Song Name',
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(12.0)),
-                                      borderSide: BorderSide(
-                                          color: Colors.blueAccent, width: 2),
+                      child: Center(
+                        child: Container(
+                          height: height / 3,
+                          child: Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: <Widget>[
+                                  RaisedButton(
+                                    onPressed: selectSong,
+                                    child: Text('Select Song'),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  TextField(
+                                    controller: songName,
+                                    decoration: InputDecoration(
+                                      hintText: 'Enter Song Name',
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(12.0)),
+                                        borderSide: BorderSide(
+                                            color: Colors.blueAccent, width: 2),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                RaisedButton(
-                                  color: buttonColor,
-                                  onPressed: finalUpload,
-                                  child: Text('Upload'),
-                                ),
-                              ],
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  RaisedButton(
+                                    color: buttonColor,
+                                    onPressed: finalUpload,
+                                    child: Text('Upload'),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

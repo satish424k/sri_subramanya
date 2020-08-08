@@ -39,6 +39,15 @@ dependencies:
   cloud_firestore:
   connectivity:
   provider:
+  transparent_image:
+  flutter_swiper:
+  audio_service: ^0.11.2
+  just_audio:
+  quick_feedback:
+  intl:
+  rate_my_app: ^0.6.1
+  share: ^0.6.4
+  store_redirect: 
 
 dev_dependencies:
   flutter_test:

@@ -7,6 +7,10 @@ import 'package:path/path.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UploadImage extends StatefulWidget {
+  final String folderName;
+
+  UploadImage({@required this.folderName});
+
   @override
   _UploadImageState createState() => _UploadImageState();
 }
@@ -52,12 +56,16 @@ class _UploadImageState extends State<UploadImage> {
 
     if (imageName.text != "" &&
         imageName.text != null &&
-        imageDownUrl.toString() is String) {
+        imageDownUrl.toString() is String &&
+        imageDownUrl != null) {
       setState(() {
         updateInProgress = true;
       });
 
-      await fireStoreInstance.collection('images').document().setData(data);
+      await fireStoreInstance
+          .collection(widget.folderName)
+          .document()
+          .setData(data);
 
       setState(() {
         updateInProgress = false;
@@ -71,9 +79,11 @@ class _UploadImageState extends State<UploadImage> {
 
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
+
     return Scaffold(
         body: updateInProgress
-            ? CircularProgressIndicator()
+            ? Center(child: CircularProgressIndicator())
             : Container(
                 height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
@@ -89,43 +99,45 @@ class _UploadImageState extends State<UploadImage> {
                     Padding(
                       padding:
                           const EdgeInsets.only(left: 8.0, right: 8.0, top: 70),
-                      child: Container(
-                        height: 200,
-                        child: Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: <Widget>[
-                                RaisedButton(
-                                  onPressed: () {
-                                    selectImage();
-                                  },
-                                  child: Text('Select Image'),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                TextField(
-                                  controller: imageName,
-                                  decoration: InputDecoration(
-                                    hintText: 'Enter Image Name',
-                                    enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(12.0)),
-                                      borderSide: BorderSide(
-                                          color: Colors.blueAccent, width: 2),
+                      child: Center(
+                        child: Container(
+                          height: height / 3,
+                          child: Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: <Widget>[
+                                  RaisedButton(
+                                    onPressed: () {
+                                      selectImage();
+                                    },
+                                    child: Text('Select Image'),
+                                  ),
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  TextField(
+                                    controller: imageName,
+                                    decoration: InputDecoration(
+                                      hintText: 'Enter Image Name',
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(12.0)),
+                                        borderSide: BorderSide(
+                                            color: Colors.blueAccent, width: 2),
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                RaisedButton(
-                                  color: buttonColor,
-                                  onPressed: finalUpload,
-                                  child: Text('Upload'),
-                                ),
-                              ],
+                                  SizedBox(
+                                    height: 8,
+                                  ),
+                                  RaisedButton(
+                                    color: buttonColor,
+                                    onPressed: finalUpload,
+                                    child: Text('Upload'),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

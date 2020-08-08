@@ -16,6 +16,10 @@ class ConnectivityService {
     });
   }
 
+  Stream<ConnectivityStatus> statusStream() {
+    return connectionStatusController.stream;
+  }
+
   ConnectivityStatus _getResultFromResult(ConnectivityResult result) {
     switch (result) {
       case ConnectivityResult.mobile:
@@ -30,5 +34,9 @@ class ConnectivityService {
       default:
         return ConnectivityStatus.Offline;
     }
+  }
+
+  void dispose() {
+    this.connectionStatusController.close();
   }
 }

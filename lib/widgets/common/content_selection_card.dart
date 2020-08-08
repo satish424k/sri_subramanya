@@ -11,9 +11,6 @@ class ContentSelectionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Color> _colors = [Color(0xffaa076b), Color(0xff61045f)];
-    List<double> _stops = [0.0, 0.7];
-
     return Container(
       margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
       child: Stack(
@@ -24,17 +21,17 @@ class ContentSelectionCard extends StatelessWidget {
               height: 124.0,
               margin: EdgeInsets.only(left: 46.0),
               decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: _colors, stops: _stops),
-                  color: Color(0xFF333366),
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(8.0),
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 10.0,
-                      offset: Offset(0.0, 10.0),
-                    )
-                  ]),
+                gradient: LinearGradient(
+                  colors: <Color>[
+                    Color(0xffFFE000),
+                    Color(0xff799F0C),
+                  ],
+                  stops: [0.0, 0.9],
+                  begin: const FractionalOffset(0.0, 0.0),
+                  end: const FractionalOffset(0.0, 1.0),
+                ),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
               child: Align(
                   alignment: Alignment.centerLeft,
                   child: Padding(
@@ -42,7 +39,7 @@ class ContentSelectionCard extends StatelessWidget {
                     child: Container(
                         child: Text(title,
                             style: FontStyle().getTeluguRegularFontStyle(
-                                25.0, Colors.white))),
+                                25.0, Colors.black))),
                   )),
             ),
           ),

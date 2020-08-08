@@ -1,13 +1,9 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FontStyle {
-  TextStyle getRegularFontStyle() {
-    return TextStyle(
-      fontFamily: 'Raleway',
-      color: Colors.white
-    );
+  TextStyle getRegularFontStyle(double size, Color color) {
+    return TextStyle(fontFamily: 'Raleway', color: color, fontSize: size);
   }
 
   TextStyle getBoldFontStyle(double size, Color color) {
@@ -19,13 +15,13 @@ class FontStyle {
     );
   }
 
-  TextStyle getTeluguRegularFontStyle(double size, Color color, [double height]) {
+  TextStyle getTeluguRegularFontStyle(double size, Color color,
+      [double height]) {
     return TextStyle(
-      fontSize: size,
-      fontFamily: 'SreeKrushnadevaraya',
-      fontWeight: FontWeight.w400,
-      color: color,
-      height: height ?? 1.1
-    );
+        fontSize: size,
+        fontFamily: 'SreeKrushnadevaraya',
+        fontWeight: FontWeight.w400,
+        color: color,
+        height: height ?? 1.1);
   }
 }

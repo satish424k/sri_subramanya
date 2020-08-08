@@ -26,6 +26,7 @@ class _LivePhotosGridItemState extends State<LivePhotosGridItem> {
     return InkWell(
       onTap: () {
         if (imageFile != null) {
+          /*
           Navigator.push(
             context,
             MaterialPageRoute(
@@ -34,6 +35,7 @@ class _LivePhotosGridItemState extends State<LivePhotosGridItem> {
               ),
             ),
           );
+          */
         }
       },
       child: Container(

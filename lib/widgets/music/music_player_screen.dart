@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:audioplayers/audio_cache.dart';
@@ -11,8 +12,12 @@ import 'package:path_provider/path_provider.dart';
 class MusicPlayerScreen extends StatefulWidget {
   final String songName;
   final String songUrl;
+  final String imageName;
 
-  MusicPlayerScreen({@required this.songName, @required this.songUrl});
+  MusicPlayerScreen(
+      {@required this.songName,
+      @required this.songUrl,
+      @required this.imageName});
 
   @override
   _MusicPlayerScreenState createState() => _MusicPlayerScreenState();
@@ -23,12 +28,13 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
   AudioCache audioCache;
   String mp3Uri = '';
   bool firstTime = true;
-  String currentTimeString = '00:00';
-  String completeTimeString = '00:00';
+  String currentTimeString = '0.00:00';
+  String completeTimeString = '0.00:00';
   double currentTime = 0.0;
   double completeTime = 0.0;
 
   bool _isPlaying = false;
+  bool myValue = false;
 
   @override
   void initState() {
@@ -40,6 +46,7 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
 
     audioPlayer.onAudioPositionChanged.listen((Duration duration) {
       setState(() {
+        myValue = false;
         currentTime = duration.inSeconds.toDouble();
         currentTimeString = duration.toString().split('.')[0];
       });
@@ -50,6 +57,10 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
         completeTime = duration.inSeconds.toDouble();
         completeTimeString = duration.toString().split('.')[0];
       });
+    });
+
+    audioPlayer.onPlayerError.listen((String error) {
+      //TODO: Yet to handle
     });
   }
 
@@ -92,6 +103,7 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
                     Container(
                       margin:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+                      height: MediaQuery.of(context).size.height / 3,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20.0),
                           boxShadow: [
@@ -106,15 +118,18 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
                                 spreadRadius: 0,
                                 blurRadius: 30)
                           ]),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: Image(
-                          image: AssetImage('assets/images/vel.jpg'),
-                          width: MediaQuery.of(context).size.width * 0.6,
-                          height: MediaQuery.of(context).size.width * 0.6,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                      child: myValue
+                          ? Center(child: CircularProgressIndicator())
+                          : ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image(
+                                image: AssetImage(
+                                    'assets/images/${widget.imageName}'),
+                                width: MediaQuery.of(context).size.width * 0.6,
+                                height: MediaQuery.of(context).size.width * 0.6,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                     ),
                     Text(widget.songName,
                         style: FontStyle()
@@ -156,7 +171,7 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
                         IconButton(
                           onPressed: () {},
                           icon: Icon(
-                            FontAwesomeIcons.backward,
+                            FontAwesomeIcons.stepBackward,
                             color: Colors.white,
                           ),
                         ),
@@ -171,6 +186,7 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
                               });
                             } else {
                               if (firstTime) {
+                                myValue = true;
                                 await audioPlayer.play(widget.songUrl);
                                 firstTime = false;
                               } else {
@@ -199,10 +215,26 @@ class _MusicPlayerScreenState extends State<MusicPlayerScreen> {
                               color: Colors.white),
                         ),
                         IconButton(
-                          onPressed: () {},
-                          icon: Icon(FontAwesomeIcons.forward,
+                          iconSize: 50,
+                          onPressed: () async {
+                            await audioPlayer.stop();
+
+                            setState(() {
+                              currentTime = 0.0;
+                              currentTimeString = '0.00.00';
+                              _isPlaying = false;
+                            });
+                          },
+                          icon: Icon(FontAwesomeIcons.stopCircle,
                               color: Colors.white),
-                        )
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            FontAwesomeIcons.stepForward,
+                            color: Colors.white,
+                          ),
+                        ),
                       ],
                     )
                   ],

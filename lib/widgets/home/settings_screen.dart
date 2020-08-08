@@ -22,15 +22,37 @@ class SettingsScreen extends StatelessWidget {
               ListView(
                 padding: EdgeInsets.only(left: 16.0, top: 70.0, right: 8.0),
                 children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Card(
+                      child: ListTile(
+                        leading: Icon(FontAwesomeIcons.music),
+                        title: Text('Upload Song'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UploadMusic(),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
                   Card(
                     child: ListTile(
-                      leading: Icon(FontAwesomeIcons.music),
-                      title: Text('Upload Song'),
+                      leading: Icon(FontAwesomeIcons.image),
+                      title: Text('Upload Live Image'),
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => UploadMusic(),
+                            builder: (context) => UploadImage(
+                              folderName: 'live',
+                            ),
                           ),
                         );
                       },
@@ -42,12 +64,14 @@ class SettingsScreen extends StatelessWidget {
                   Card(
                     child: ListTile(
                       leading: Icon(FontAwesomeIcons.image),
-                      title: Text('Upload Image'),
+                      title: Text('Upload Gallery Image'),
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => UploadImage(),
+                            builder: (context) => UploadImage(
+                              folderName: 'gallery',
+                            ),
                           ),
                         );
                       },
